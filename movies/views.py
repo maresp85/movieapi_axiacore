@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 from .serializers import GenreSerializer, MovieSerializer, MovieSerializerP
 from .models import Genre, Movie
@@ -7,10 +8,23 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
+'''Background task'''
+from background_task.models import Task
+from background_task import background
+from .tasks import call_api
+import logging
+import coreapi
+import datetime
 
+logger = logging.getLogger(__name__)
+#log in file
+logging.basicConfig(filename='logs/debug.log', level=logging.DEBUG)
 
 #Web Service - GET Detail Movie
 class DetailMovieAPI(APIView):
+
+    permission_classes = (IsAuthenticated,)
 
     '''Get Movie (only 1)'''
     def get(self, request, pk):
@@ -27,6 +41,8 @@ class DetailMovieAPI(APIView):
 
 # Web Services CRUD Movie
 class MovieAPI(APIView):
+
+    permission_classes = (IsAuthenticated,)
 
     '''List all movie'''
     def get(self, request):
@@ -78,6 +94,8 @@ class MovieAPI(APIView):
 #Web Service - UPDATE Rating
 class RatingMovieAPI(APIView):
 
+    permission_classes = (IsAuthenticated,)
+
     '''Update Ranking Movie'''
     def put(self, request, pk, format=None):
 
@@ -101,3 +119,14 @@ class RatingMovieAPI(APIView):
         except Exception as error:
             return Response({ "error": str(error) },
                               status=status.HTTP_400_BAD_REQUEST)
+
+def tasks(request):
+    date = datetime.datetime(year=datetime.datetime.now().year,
+                             month=datetime.datetime.now().month,
+                             day=datetime.datetime.now().day,
+                             hour=16,
+                             minute=58)
+    call_api(schedule= date, repeat= Task.DAILY)
+    #print(datetime.datetime.now())
+    logging.debug("Init process Call API")
+    return HttpResponse("End process Call API ")

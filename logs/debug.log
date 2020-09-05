@@ -1,0 +1,422 @@
+DEBUG:asyncio:Using selector: SelectSelector
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:root:Init process Call API
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+ERROR:background_task.tasks:Rescheduling movies.tasks.call_api
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 26, in call_movieapi
+    movie.genre_id.add(genre)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 946, in add
+    through_defaults=through_defaults,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1129, in _add_items
+    ], ignore_conflicts=True)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 493, in bulk_create
+    objs_without_pk, fields, batch_size, ignore_conflicts=ignore_conflicts,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1230, in _batched_insert
+    self._insert(item, fields=fields, using=self.db, ignore_conflicts=ignore_conflicts)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1204, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\sql\compiler.py", line 1392, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\background_task\tasks.py", line 43, in bg_runner
+    func(*args, **kwargs)
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 9, in call_api
+    call_movieapi()
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 28, in call_movieapi
+    logging.debug(error)
+NameError: name 'logging' is not defined
+WARNING:background_task.models:Rescheduling task movies.tasks.call_api for 0:00:06 later at 2020-09-05 21:50:40.227060+00:00
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+ERROR:background_task.tasks:Rescheduling movies.tasks.call_api
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 26, in call_movieapi
+    movie.genre_id.add(genre)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 946, in add
+    through_defaults=through_defaults,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1129, in _add_items
+    ], ignore_conflicts=True)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 493, in bulk_create
+    objs_without_pk, fields, batch_size, ignore_conflicts=ignore_conflicts,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1230, in _batched_insert
+    self._insert(item, fields=fields, using=self.db, ignore_conflicts=ignore_conflicts)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1204, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\sql\compiler.py", line 1392, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\background_task\tasks.py", line 43, in bg_runner
+    func(*args, **kwargs)
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 9, in call_api
+    call_movieapi()
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 28, in call_movieapi
+    logging.debug(error)
+NameError: name 'logging' is not defined
+ERROR:background_task.tasks:Rescheduling movies.tasks.call_api
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 26, in call_movieapi
+    movie.genre_id.add(genre)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 946, in add
+    through_defaults=through_defaults,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1129, in _add_items
+    ], ignore_conflicts=True)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 493, in bulk_create
+    objs_without_pk, fields, batch_size, ignore_conflicts=ignore_conflicts,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1230, in _batched_insert
+    self._insert(item, fields=fields, using=self.db, ignore_conflicts=ignore_conflicts)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1204, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\sql\compiler.py", line 1392, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\background_task\tasks.py", line 43, in bg_runner
+    func(*args, **kwargs)
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 9, in call_api
+    call_movieapi()
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 28, in call_movieapi
+    logging.debug(error)
+NameError: name 'logging' is not defined
+WARNING:background_task.models:Rescheduling task movies.tasks.call_api for 0:00:06 later at 2020-09-05 21:50:55.822106+00:00
+WARNING:background_task.models:Rescheduling task movies.tasks.call_api for 0:00:06 later at 2020-09-05 21:50:56.588094+00:00
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+ERROR:background_task.tasks:Rescheduling movies.tasks.call_api
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 26, in call_movieapi
+    movie.genre_id.add(genre)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 946, in add
+    through_defaults=through_defaults,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1129, in _add_items
+    ], ignore_conflicts=True)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 493, in bulk_create
+    objs_without_pk, fields, batch_size, ignore_conflicts=ignore_conflicts,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1230, in _batched_insert
+    self._insert(item, fields=fields, using=self.db, ignore_conflicts=ignore_conflicts)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1204, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\sql\compiler.py", line 1392, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\background_task\tasks.py", line 43, in bg_runner
+    func(*args, **kwargs)
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 9, in call_api
+    call_movieapi()
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 28, in call_movieapi
+    logging.debug(error)
+NameError: name 'logging' is not defined
+WARNING:background_task.models:Rescheduling task movies.tasks.call_api for 0:00:06 later at 2020-09-05 21:51:11.351814+00:00
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+INFO:background_task.tasks:Ran task and deleting movies.tasks.call_api
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+ERROR:background_task.tasks:Rescheduling movies.tasks.call_api
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 26, in call_movieapi
+    movie.genre_id.add(genre)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 946, in add
+    through_defaults=through_defaults,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\fields\related_descriptors.py", line 1129, in _add_items
+    ], ignore_conflicts=True)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 493, in bulk_create
+    objs_without_pk, fields, batch_size, ignore_conflicts=ignore_conflicts,
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1230, in _batched_insert
+    self._insert(item, fields=fields, using=self.db, ignore_conflicts=ignore_conflicts)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\query.py", line 1204, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\models\sql\compiler.py", line 1392, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\django\db\backends\sqlite3\base.py", line 396, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\MarEsp\Envs\entorno_seminario\lib\site-packages\background_task\tasks.py", line 43, in bg_runner
+    func(*args, **kwargs)
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 9, in call_api
+    call_movieapi()
+  File "D:\ProyectosDjango\moviesapi\movies\tasks.py", line 28, in call_movieapi
+    logging.debug(error)
+NameError: name 'logging' is not defined
+WARNING:background_task.models:Rescheduling task movies.tasks.call_api for 0:00:21 later at 2020-09-05 21:51:44.140154+00:00
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+INFO:background_task.tasks:Ran task and deleting movies.tasks.call_api
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:asyncio:Using selector: SelectSelector
+DEBUG:asyncio:Using selector: SelectSelector
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:root:Init process Call API
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+INFO:background_task.tasks:Ran task and deleting movies.tasks.call_api
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:asyncio:Using selector: SelectSelector
+INFO:django.utils.autoreload:D:\ProyectosDjango\moviesapi\movies\views.py changed, reloading.
+DEBUG:asyncio:Using selector: SelectSelector
+DEBUG:root:Init process Call API
+DEBUG:asyncio:Using selector: SelectSelector
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+INFO:background_task.tasks:Ran task and deleting movies.tasks.call_api
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:root:Init process Call API
+INFO:background_task.tasks:Running movies.tasks.call_api
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/movie/popular/ HTTP/1.1" 301 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): api.themoviedb.org:80
+DEBUG:urllib3.connectionpool:http://api.themoviedb.org:80 "GET /3/movie/popular?api_key=71112f6c97911e1a9e9b87ee946e7225 HTTP/1.1" 200 None
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+INFO:background_task.tasks:Ran task and deleting movies.tasks.call_api
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:background_task.management.commands.process_tasks:waiting for tasks
+DEBUG:asyncio:Using selector: SelectSelector
